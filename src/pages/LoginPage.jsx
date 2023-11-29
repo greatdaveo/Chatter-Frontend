@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/pages/LoginPage.css";
 // import "../styles/pages/SignupPage.css";
 import { useContext, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 // useContext
@@ -27,7 +26,6 @@ const LoginPage = () => {
     });
 
     console.log(response);
-    // console.log(await response.text());
 
     if (response.ok) {
       const userInfo = await response.json();
