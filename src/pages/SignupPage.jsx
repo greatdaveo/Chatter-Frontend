@@ -12,6 +12,7 @@ const SignupPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ const SignupPage = () => {
     if (response.ok) {
       return navigate("/login");
     } else {
+      setError("This user exists! Kindly login, thank you.");
       throw new Error("Registration not successful!");
     }
   };
@@ -50,6 +52,12 @@ const SignupPage = () => {
 
         <div>
           <h2>Register as a Writer/Reader</h2>
+
+          {error && (
+            <p className="error" style={{ color: "red", textAlign: "center" }}>
+              {error}
+            </p>
+          )}
 
           <form>
             <div>
