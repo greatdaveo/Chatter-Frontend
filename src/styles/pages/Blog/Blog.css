@@ -1,0 +1,15 @@
+.blog {
+  gap: 1rem;
+}
+
+.blog-left-side {
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+
+.blog-right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

@@ -1,0 +1,34 @@
+.post-content {
+  padding: 1rem;
+  position: relative;
+}
+
+.post-content textarea {
+  height: 80vh;
+  width: 75vw;
+  border-radius: 5px;
+  padding: 1rem;
+  outline-color: #551a8b;
+}
+
+.post-content ::placeholder {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.post-content .overlay {
+  position: absolute;
+  top: 30rem;
+  left: 60rem;
+}
+
+.text {
+  margin-right: 10px;
+}
+
+.post-content button {
+  background: #551a8b;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}

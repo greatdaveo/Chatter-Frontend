@@ -1,0 +1,17 @@
+.about-charter {
+  display: flex;
+  padding: 4rem 5rem;
+  gap: 0rem;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.about-charter > div {
+  /* width: 60%; */
+  margin: 0 auto;
+  margin-right: 6rem;
+}
+
+.about-charter img {
+  border-radius: 10px;
+}

@@ -1,0 +1,37 @@
+.why-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 5rem;
+}
+
+.why-container > :nth-child(1) {
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.why-container > :nth-child(2) {
+  display: flex;
+  gap: 1rem;
+}
+
+.why-container > :nth-child(2) > div {
+  /* border: 1px solid #551a8b; */
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding: 0rem 3rem;
+  padding-top: 2rem;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.why-container i {
+  /* background: #551a8b; */
+  background: gray;
+  padding: 1rem;
+  color: white;
+  border-radius: 50%;
+}
+
+.why-container > :nth-child(2) p {
+}

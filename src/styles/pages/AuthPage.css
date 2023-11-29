@@ -1,0 +1,22 @@
+.register {
+  display: flex;
+  gap: 2rem;
+}
+
+.register img {
+  height: fit-content;
+  width: 50vw;
+}
+
+.register > :nth-child(2) {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.form-header {
+  display: flex;
+  width: fit-content;
+  gap: 12rem;
+  border-bottom: 4px solid #551a8b;
+}

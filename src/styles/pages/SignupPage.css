@@ -1,0 +1,69 @@
+.signu-up {
+  display: flex;
+  gap: 10rem;
+}
+
+.signu-up > :nth-child(1) img {
+  height: 100vh;
+  width: 50vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form > :nth-child(1) {
+  display: flex;
+  gap: 0rem;
+}
+
+form > :nth-child(1) input {
+  width: 60%;
+  margin: 0 auto;
+}
+
+form > :nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form input,
+select {
+  padding: 0.7rem 1rem;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid rgb(230, 220, 220);
+  outline: none;
+}
+
+form select {
+  width: 88%;
+  margin: 0 auto;
+}
+
+.form-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-btn button {
+  width: 88%;
+  padding: 0.8rem 1rem;
+}
+
+.form-btn > :nth-child(1) button {
+  background: #551a8b;
+  color: white;
+}
+
+.form-btn > :nth-child(2) button,
+.form-btn > :nth-child(3) button {
+  border: 1px solid gray;
+  background: none;
+  padding: 0.5rem 1rem;
+}

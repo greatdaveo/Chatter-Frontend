@@ -1,0 +1,32 @@
+.blog-side-container {
+  display: flex;
+  flex-direction: column;
+  /* background: #551a8b; */
+  background: linear-gradient(rgb(41, 23, 75), hsla(0, 0%, 0%, 0.5));
+  height: 100vh;
+  width: 15vw;
+}
+
+.blog-side-container > :nth-child(1) {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.blog-side-container > :nth-child(1) a {
+  color: white;
+}
+
+.blog-side-container > :nth-child(2) {
+  margin-top: 2rem;
+}
+
+.blog-side-container h4 {
+  margin-bottom: 0.4rem;
+  color: white;
+}
+
+.blog-side-container ul a {
+  color: rgb(204, 198, 198);
+}

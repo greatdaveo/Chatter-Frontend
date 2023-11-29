@@ -1,0 +1,38 @@
+.hero-container {
+  background-image: linear-gradient(rgb(41, 23, 75), hsla(0, 0%, 0%, 0.5)),
+    url("../../assets/HeroImages/ChatterHeroImage.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* background-position-x: 67%; */
+  background-position-y: 10%;
+}
+
+.heroText {
+  color: white;
+  padding: 5rem 5rem;
+  width: 60%;
+  margin: 0 auto;
+  line-height: 2.5rem;
+}
+
+.heroText > h1 {
+  font-size: 4rem;
+}
+
+.heroText > h2 {
+  font-size: 3rem;
+}
+
+.heroText > p {
+  font-size: 2rem;
+}
+
+.heroText button {
+  background: #551a8b;
+  color: white;
+  padding: 1rem 2rem;
+  border: 1px solid white;
+  font-weight: 700;
+}

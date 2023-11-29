@@ -1,0 +1,40 @@
+.search-post {
+  display: flex;
+  align-items: center;
+  /* text-align: center; */
+  justify-content: space-evenly;
+  border: 1px solid gray;
+  padding: 0.5rem;
+}
+
+.search-post .input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-post input {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  padding-right: 5rem;
+}
+
+.input-container i {
+  position: absolute;
+  right: 0.5rem;
+  pointer-events: none;
+}
+
+.search-post > :nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.search-post > :nth-child(2) img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-items: center;
+}

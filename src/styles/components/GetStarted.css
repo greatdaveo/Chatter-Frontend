@@ -1,0 +1,36 @@
+.get-started {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 3rem;
+  position: relative;
+  gap: 5rem;
+}
+
+.get-started :nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.get-started .member3 {
+  position: absolute;
+  top: 9rem;
+  left: 23rem;
+}
+
+.get-started .member2,
+.get-started .member4 {
+  margin-left: 5rem;
+}
+
+.get-started img {
+  border-radius: 50%;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.get-started button {
+  background: #551a8b;
+  color: white;
+  padding: 1rem 2rem;
+}
