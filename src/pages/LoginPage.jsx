@@ -18,24 +18,26 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:4000/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
+    try {
+      const response = await fetch("http://localhost:4000/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      // console.log(response);
+      const data = await response.json();
+      // console.log(data);
 
-    console.log(response);
+      if (response.status === 400) {
+        setError(data);
+        return;
+      }
 
-    if (response.ok) {
-      const userInfo = await response.json();
-      setUserInfo(userInfo);
+      setUserInfo(data);
       navigate("/blog");
-    } else {
-      console.error("Login failed with status:", response.status);
-      const errorText = await response.text();
-      console.error("Response text:", errorText);
-      setError("Wrong Credentials");
+    } catch (error) {
+      setError("Unable to login!");
     }
   };
 

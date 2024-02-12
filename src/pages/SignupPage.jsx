@@ -17,28 +17,33 @@ const SignupPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:4000/register", {
-      method: "POST",
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        selectedOption: option,
-        email,
-        password,
-        confirmPassword,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const response = await fetch("http://localhost:4000/register", {
+        method: "POST",
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          selectedOption: option,
+          email,
+          password,
+          confirmPassword,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      console.log(data);
 
-    const data = await response.json();
-    console.log(data);
+      if (response.status === 401) {
+        setError(data);
+        return;
+      }
 
-    if (response.ok) {
-      return navigate("/login");
-    } else {
-      setError("This user exists! Kindly login, thank you.");
-      throw new Error("Registration not successful!");
+      navigate("/login");
+      alert(data);
+    } catch (error) {
+      setError(error.message);
     }
+    
   };
 
   return (
