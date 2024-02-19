@@ -2,8 +2,11 @@ import SearchPost from "./SearchPost";
 import BlogSideBar from "../../pages/Blog/BlogSideBar";
 import "../../styles/pages/Blog/Blog.css";
 import CreateContent from "./CreateContent";
+import CreatePost from "./CreatePost";
 
 const Blog = () => {
+  // <CreateContent />;
+
   return (
     <div className="blog">
       <div className="blog-left-side">
@@ -12,7 +15,7 @@ const Blog = () => {
 
       <div className="blog-right-side">
         <SearchPost />
-        <CreateContent />
+        <CreatePost />
       </div>
     </div>
   );

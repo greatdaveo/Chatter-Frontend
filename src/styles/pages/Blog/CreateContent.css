@@ -5,16 +5,37 @@
 
 .post-content textarea {
   height: 80vh;
-  width: 75vw;
+  /* width: 75vw; */
   border-radius: 5px;
   padding: 1rem;
   outline-color: #551a8b;
+  position: relative;
+  margin-top:-10rem;
 }
 
-.post-content ::placeholder {
+.content-placeholder {
+  position: relative;
+  top: 10rem;
+  left: 10rem;
+  z-index: 99;
+  display: flex;
+}
+
+.content-placeholder > div > span {
+  border-radius: 100%;
+  border: 0.5px solid gray;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  margin-right: 2rem;
+  color: gray;
+  cursor: pointer;
+}
+
+
+/* .post-content ::placeholder {
   font-size: 2rem;
   text-align: center;
-}
+} */
 
 .post-content .overlay {
   position: absolute;
@@ -29,6 +50,8 @@
 .post-content button {
   background: #551a8b;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 1.5rem;
   font-weight: bold;
+  position: absolute;
+  top: -25rem;
 }
