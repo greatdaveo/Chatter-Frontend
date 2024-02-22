@@ -6,13 +6,13 @@
 }
 
 .create-container {
-    border: 4px solid gray;
-    height: 30vh;
+    border: 2px solid gray;
+    height: 50vh;
 }
 
 .create-container img {
     z-index: 20;
-    height: 30vh;
+    height: 50vh;
     width: 100%;
     cursor: pointer;
 }
