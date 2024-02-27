@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { setUserInfo } = useContext(UserContext);
+  const { userAuth, setUserAuth } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,7 +34,8 @@ const LoginPage = () => {
         return;
       }
 
-      setUserInfo(data);
+      setUserAuth(data);
+      console.log("userAuth:", userAuth);
       navigate("/blog");
     } catch (error) {
       setError("Unable to login!");

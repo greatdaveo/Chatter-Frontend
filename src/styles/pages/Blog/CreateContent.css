@@ -1,57 +1,36 @@
-.post-content {
-  padding: 1rem;
-  position: relative;
+.create-cover {
+    margin: auto;
+    max-width: 900px;
+    width: full;
+    padding: 1rem;
 }
 
-.post-content textarea {
-  height: 80vh;
-  /* width: 75vw; */
-  border-radius: 5px;
-  padding: 1rem;
-  outline-color: #551a8b;
-  position: relative;
-  margin-top:-10rem;
+.create-container {
+    border: 2px solid gray;
+    height: 50vh;
 }
 
-.content-placeholder {
-  position: relative;
-  top: 10rem;
-  left: 10rem;
-  z-index: 99;
-  display: flex;
+.create-container img {
+    z-index: 20;
+    height: 50vh;
+    width: 100%;
+    cursor: pointer;
 }
 
-.content-placeholder > div > span {
-  border-radius: 100%;
-  border: 0.5px solid gray;
-  padding: 0.5rem 1rem;
-  font-size: 2rem;
-  margin-right: 2rem;
-  color: gray;
-  cursor: pointer;
+.create-cover textarea {
+    font-size: 2rem;
+    width: 100%;
+    height: auto;
+    margin: 0rem auto;
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+.create-container hr {
+    margin-top: 0 rem;
+    width: fit-content;
+    font-weight: bold;
 }
 
 
-/* .post-content ::placeholder {
-  font-size: 2rem;
-  text-align: center;
-} */
-
-.post-content .overlay {
-  position: absolute;
-  top: 30rem;
-  left: 60rem;
-}
-
-.text {
-  margin-right: 10px;
-}
-
-.post-content button {
-  background: #551a8b;
-  color: white;
-  padding: 1.5rem;
-  font-weight: bold;
-  position: absolute;
-  top: -25rem;
-}
