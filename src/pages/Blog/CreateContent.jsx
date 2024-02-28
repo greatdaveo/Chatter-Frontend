@@ -1,9 +1,11 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import defaultBanner from "../../assets/pages/blog/blog banner.png";
 import { uploadImageFile } from "../../common/aws";
 import { Toaster, toast } from "react-hot-toast";
 import "../../styles/pages/Blog/CreateContent.css";
 import { EditorContext } from "./BlogContentsEditor";
+import EditorJS from "@editorjs/editorjs";
+import { tools } from "../../components/blog/tools";
 
 const CreateContent = () => {
   const {
@@ -11,6 +13,16 @@ const CreateContent = () => {
     blog: { title, banner, content, tags, description, author },
     setBlog,
   } = useContext(EditorContext);
+
+  // To handle the Text Editor
+  useEffect(() => {
+    const editor = new EditorJS({
+      holderId: "textEditor",
+      data: "",
+      tools: tools,
+      placeholder: "Kindly write here!!! ✍️",
+    });
+  }, []);
 
   // To upload images to aws s3 bucket
   const handleBannerUpload = (e) => {
@@ -87,6 +99,8 @@ const CreateContent = () => {
         ></textarea>
 
         <hr />
+
+        <div id="textEditor"></div>
       </div>
     </section>
   );

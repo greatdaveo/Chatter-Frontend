@@ -1,11 +1,9 @@
-import { useEffect } from "react";
-
 export const uploadImageFile = async (img) => {
   try {
     const response = await fetch("http://localhost:4000/upload-url");
 
     if (!response.ok) {
-      throw new Error("Failed to fetch upload URL");
+      throw new Error("Failed to fetch upload URL!");
     }
 
     const { uploadUrl } = await response.json();
@@ -19,7 +17,7 @@ export const uploadImageFile = async (img) => {
     });
 
     if (!uploadResponse.ok) {
-      throw new Error("Failed to upload image");
+      throw new Error("Failed to upload image!");
     }
 
     const imgUrl = uploadUrl.split("?")[0];
