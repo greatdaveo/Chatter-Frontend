@@ -8,20 +8,25 @@ import EditorJS from "@editorjs/editorjs";
 import { tools } from "../../components/blog/tools";
 
 const CreateContent = () => {
-  const {
+  let {
     blog,
     blog: { title, banner, content, tags, description, author },
     setBlog,
+    textEditor,
+    setTextEditor,
+    setEditorState,
   } = useContext(EditorContext);
 
   // To handle the Text Editor
   useEffect(() => {
-    const editor = new EditorJS({
-      holderId: "textEditor",
-      data: "",
-      tools: tools,
-      placeholder: "Kindly write here!!! ✍️",
-    });
+    setTextEditor(
+      new EditorJS({
+        holderId: "textEditor",
+        data: "",
+        tools: tools,
+        placeholder: "Kindly write here!!! ✍️",
+      })
+    );
   }, []);
 
   // To upload images to aws s3 bucket

@@ -5,6 +5,7 @@ import CreateContentNavbar from "../../components/blog/CreateContentNavbar";
 import CreateContent from "./CreateContent";
 import { UserContext } from "../../contexts/UserContext";
 import { Navigate } from "react-router-dom";
+import PublishForm from "./PublishForm";
 
 const blogStructure = {
   title: "",
@@ -20,12 +21,20 @@ export const EditorContext = createContext({});
 const BlogContentsEditor = () => {
   const [blog, setBlog] = useState(blogStructure);
   const [editorState, setEditorState] = useState("editor");
+  const [textEditor, setTextEditor] = useState({ isReady: false });
 
   const { userAuth } = useContext(UserContext);
 
   return (
     <EditorContext.Provider
-      value={{ blog, setBlog, editorState, setEditorState }}
+      value={{
+        blog,
+        setBlog,
+        editorState,
+        setEditorState,
+        textEditor,
+        setTextEditor,
+      }}
     >
       {userAuth === null ? (
         <Navigate to="/login" />
@@ -36,8 +45,22 @@ const BlogContentsEditor = () => {
           </div>
 
           <div className="blog-right-side">
-            <CreateContentNavbar title={blog.title} />
-            <CreateContent />
+            {editorState == "editor" ? (
+              <span>
+                <CreateContentNavbar
+                  title={blog.title}
+                  banner={blog.banner}
+                  textEditor={textEditor}
+                  blog={blog}
+                  setBlog={setBlog}
+                  editorState={editorState}
+                  setEditorState={setEditorState}
+                />
+                <CreateContent />
+              </span>
+            ) : (
+              <PublishForm />
+            )}
           </div>
         </div>
       )}
