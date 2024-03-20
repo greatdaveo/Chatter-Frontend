@@ -1,0 +1,80 @@
+.publish-cover {
+    display: flex;
+    padding: 3rem 5rem;
+    margin: 5rem auto;
+    gap: 4rem;
+}
+
+.preview img {
+    width: 30vw;
+    height: 40vh;
+}
+
+.preview .text {
+    max-width: 30vw;
+}
+
+.preview h3 {
+    color: var(--primary-color)
+}
+
+.cancel-btn {
+    position: absolute;
+    right: 10rem;
+    top: 5rem;
+    background: none;
+    font-size: 1.5rem;
+}
+
+.publish-form {
+    margin-top: 2rem;
+    max-width: 20vw;
+}
+
+.publish-form input, .publish-form textarea {
+    width: 20vw;
+    padding: 0.7rem 0.5rem;
+    margin: 0 auto;
+    background: rgb(243, 240, 240);
+    border: none;
+}
+
+.publish-form textarea {
+    height: 8vh;
+}
+
+.publish-form .char-limit {
+    display: flex;
+    justify-content: end;
+    font-size: 0.7rem;
+    margin-top: 0;
+}
+
+.publish-form .topics {
+    font-size: 0.8rem;
+}
+
+.publish-form .tags-cover {
+    background: rgb(243, 240, 240);
+    padding: 0.5rem;
+    width: 20vw;
+}
+
+.publish-form .tags-cover input {
+    background: white;
+    border-radius: 5px;
+    width: 15vw;
+}
+
+.publish-form .tags-left {
+    display: flex;
+    justify-content: end;
+    font-size: 0.7rem;
+}
+
+.publish-form .pb-btn {
+    background: #551a8b;
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+}

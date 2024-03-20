@@ -23,8 +23,8 @@ function App() {
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact-us" element={<Contact />} />
             <Route path="/blog" element={<BlogContentsEditor />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<SignupPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

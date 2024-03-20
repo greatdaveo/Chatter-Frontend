@@ -5,7 +5,7 @@ import CreateContentNavbar from "../../components/blog/CreateContentNavbar";
 import CreateContent from "./CreateContent";
 import { UserContext } from "../../contexts/UserContext";
 import { Navigate } from "react-router-dom";
-import PublishForm from "./PublishForm";
+import PublishFormPage from "./PublishFormPage";
 
 const blogStructure = {
   title: "",
@@ -59,7 +59,7 @@ const BlogContentsEditor = () => {
                 <CreateContent />
               </span>
             ) : (
-              <PublishForm />
+              <PublishFormPage setEditorState={setEditorState} />
             )}
           </div>
         </div>

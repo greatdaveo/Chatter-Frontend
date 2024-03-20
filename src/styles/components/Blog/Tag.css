@@ -1,0 +1,18 @@
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag p {
+  background: white;
+  padding: 0.5rem;
+  border-radius: 20px;
+  margin-bottom: 0.4rem;
+}
+
+.tag p i {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+}
