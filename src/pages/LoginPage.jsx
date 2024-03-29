@@ -43,7 +43,7 @@ const LoginPage = () => {
   };
 
   return (
-    <>
+    <div>
       <NavBar />
 
       <div className="login">
@@ -81,7 +81,7 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,6 +3,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { EditorContext } from "./BlogContentsEditor";
 import Tag from "../../components/blog/Tag";
 import "../../styles/pages/Blog/PublishFormPage.css";
+import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const PublishFormPage = () => {
   let charactersLimit = 200;
@@ -14,6 +16,11 @@ const PublishFormPage = () => {
     setEditorState,
     setBlog,
   } = useContext(EditorContext);
+
+  let { userAuth } = useContext(UserContext);
+  console.log("Access token:", userAuth);
+
+  const navigate = useNavigate();
 
   const handlePublishBtn = () => {
     setEditorState("editor");
@@ -54,6 +61,64 @@ const PublishFormPage = () => {
       }
 
       e.target.value = "";
+    }
+  };
+
+  const publishBlog = async (e) => {
+    e.preventDefault();
+    // To check if the publish button is in disable state
+    if (e.target.className.includes("disable")) {
+      return;
+    }
+
+    if (!title.length) {
+      return toast.error("Please write the blog title to publish!");
+    }
+
+    if (!description.length || description.length > charactersLimit) {
+      return toast.error(
+        `Write a description about your blog within ${charactersLimit} to publish!`
+      );
+    }
+
+    if (!tags.length) {
+      return toast.error(
+        "Please enter at least 1 tag to help us rank your blog!"
+      );
+    }
+
+    let loadingToast = toast.loading("Publishing...");
+    // To disable the publish button from being double clicked when in publishing process
+    e.target.classList.add("disable");
+
+    try {
+      const response = await fetch("http://localhost:4000/create-blog", {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          banner,
+          description,
+          content,
+          tags,
+          draft: false,
+        }),
+        headers: { Authorization: `Bearer ${access_token}` },
+        credentials: "include",
+      });
+
+      await response.json();
+      // setBlog(data);
+      e.target.classList.remove("disable");
+      toast.dismiss(loadingToast);
+      toast.success("Published Successfully! 🥳👍");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } catch (err) {
+      e.target.classList.remove("disable");
+      toast.dismiss(loadingToast);
+      return toast.error(err.error);
     }
   };
 
@@ -118,7 +183,9 @@ const PublishFormPage = () => {
 
         <p className="tags-left">{tagLimit - tags.length} Tags left</p>
 
-        <button className="pb-btn">Publish</button>
+        <button className="pb-btn" onClick={publishBlog}>
+          Publish
+        </button>
       </div>
     </section>
   );

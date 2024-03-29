@@ -13,7 +13,7 @@ const blogStructure = {
   content: [],
   tags: [],
   description: "",
-  // author: {},
+  author: {},
 };
 
 export const EditorContext = createContext({});
@@ -24,6 +24,7 @@ const BlogContentsEditor = () => {
   const [textEditor, setTextEditor] = useState({ isReady: false });
 
   const { userAuth } = useContext(UserContext);
+  console.log("UserAuth", userAuth);
 
   return (
     <EditorContext.Provider
