@@ -7,7 +7,6 @@ import Contact from "./pages/Contact";
 import BlogContentsEditor from "./pages/Blog/BlogContentsEditor";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 // Context Provider
 import { UserContextProvider } from "./contexts/UserContext";
@@ -22,7 +21,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact-us" element={<Contact />} />
-            <Route path="/blog" element={<BlogContentsEditor />} />
+            <Route path="/create-blog" element={<BlogContentsEditor />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<SignupPage />} />
           </Route>

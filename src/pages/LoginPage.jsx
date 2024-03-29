@@ -1,7 +1,6 @@
 import Member1 from "../assets/components/login-register-img.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/pages/LoginPage.css";
-// import "../styles/pages/SignupPage.css";
 import { useContext, useState } from "react";
 import NavBar from "../components/NavBar";
 
@@ -13,7 +12,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { userAuth, setUserAuth } = useContext(UserContext);
+  const { userAuth, setUserAuth, setAccessToken } = useContext(UserContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,18 +24,21 @@ const LoginPage = () => {
         headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
-      // console.log(response);
       const data = await response.json();
       // console.log(data);
-
       if (response.status === 400) {
         setError(data);
         return;
       }
 
-      setUserAuth(data);
-      console.log("userAuth:", userAuth);
-      navigate("/blog");
+      setUserAuth(data.user);
+      setAccessToken(data.token);
+
+      // console.log("Login Page:", data);
+      // console.log("User:", data.user);
+      // console.log("Token:", data.token);
+
+      navigate("/create-blog");
     } catch (error) {
       setError("Unable to login!");
     }

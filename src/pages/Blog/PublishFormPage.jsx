@@ -17,8 +17,9 @@ const PublishFormPage = () => {
     setBlog,
   } = useContext(EditorContext);
 
-  let { userAuth } = useContext(UserContext);
-  console.log("Access token:", userAuth);
+  // To destructure the access token from the UserContext and use it before publishing the blog
+  let { accessToken } = useContext(UserContext);
+  // console.log("Access token:", accessToken);
 
   const navigate = useNavigate();
 
@@ -102,19 +103,22 @@ const PublishFormPage = () => {
           tags,
           draft: false,
         }),
-        headers: { Authorization: `Bearer ${access_token}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
         credentials: "include",
       });
 
-      await response.json();
-      // setBlog(data);
+      const data = await response.json();
+
+      // console.log(data);
+
+      setBlog(data);
       e.target.classList.remove("disable");
       toast.dismiss(loadingToast);
       toast.success("Published Successfully! 🥳👍");
-
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
+      navigate("/");
     } catch (err) {
       e.target.classList.remove("disable");
       toast.dismiss(loadingToast);

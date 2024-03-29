@@ -24,7 +24,6 @@ const BlogContentsEditor = () => {
   const [textEditor, setTextEditor] = useState({ isReady: false });
 
   const { userAuth } = useContext(UserContext);
-  console.log("UserAuth", userAuth);
 
   return (
     <EditorContext.Provider

@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 
 const NavBar = () => {
   const { userAuth } = useContext(UserContext);
-  console.log(userAuth);
+  // console.log(userAuth);
 
   return (
     <nav>
@@ -31,20 +31,28 @@ const NavBar = () => {
             </li>
 
             <li>
-              <NavLink to={userAuth._id ? "/blog" : "/login"}>Blog</NavLink>
+              <NavLink to={userAuth._id ? "/create-blog" : "/login"}>
+                Blog
+              </NavLink>
             </li>
           </ul>
         </div>
 
-        <div>
-          <Link to="/login">
-            <button className="login">Log In</button>
+        {userAuth ? (
+          <Link to="/logout">
+            <button className="login">Log Out</button>
           </Link>
+        ) : (
+          <div>
+            <Link to="/login">
+              <button className="login">Log In</button>
+            </Link>
 
-          <Link to="/register">
-            <button className="signup">Sign Up</button>
-          </Link>
-        </div>
+            <Link to="/register">
+              <button className="signup">Sign Up</button>
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
