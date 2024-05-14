@@ -19,14 +19,17 @@ const CreateContent = () => {
 
   // To handle the Text Editor
   useEffect(() => {
-    setTextEditor(
-      new EditorJS({
-        holderId: "textEditor",
-        data: content,
-        tools: tools,
-        placeholder: "Kindly write here!!! ✍️",
-      })
-    );
+    if (!textEditor.isReady) {
+      setTextEditor(
+        new EditorJS({
+          holderId: "textEditor",
+          data: content,
+          tools: tools,
+          placeholder: "Kindly write here!!! ✍️",
+        })
+      );
+    }
+   
   }, []);
 
   // To upload images to aws s3 bucket

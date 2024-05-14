@@ -1,6 +1,8 @@
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export const uploadImageFile = async (img) => {
   try {
-    const response = await fetch("http://localhost:4000/upload-url");
+    const response = await fetch(`${BACKEND_URL}/blog/upload-url`);
 
     if (!response.ok) {
       throw new Error("Failed to fetch upload URL!");

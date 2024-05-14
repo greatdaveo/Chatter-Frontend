@@ -6,6 +6,8 @@ import "../../styles/pages/Blog/PublishFormPage.css";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const PublishFormPage = () => {
   let charactersLimit = 200;
   let tagLimit = 10;
@@ -93,7 +95,7 @@ const PublishFormPage = () => {
     e.target.classList.add("disable");
 
     try {
-      const response = await fetch("http://localhost:4000/create-blog", {
+      const response = await fetch(`${BACKEND_URL}/blog/create-blog`, {
         method: "POST",
         body: JSON.stringify({
           title,
@@ -168,7 +170,7 @@ const PublishFormPage = () => {
         ></textarea>
 
         <p className="char-limit">
-          {charactersLimit - description.length} characters left
+          {charactersLimit - description?.length} characters left
         </p>
 
         <p className="topics">
@@ -179,13 +181,13 @@ const PublishFormPage = () => {
           <input type="text" placeholder="Topic" onKeyDown={handleKeyDown} />
 
           <div className="tag">
-            {tags.map((tag, i) => (
+            {tags?.map((tag, i) => (
               <Tag tag={tag} tagIndex={i} key={i} className="tag" />
             ))}
           </div>
         </div>
 
-        <p className="tags-left">{tagLimit - tags.length} Tags left</p>
+        <p className="tags-left">{tagLimit - tags?.length} Tags left</p>
 
         <button className="pb-btn" onClick={publishBlog}>
           Publish

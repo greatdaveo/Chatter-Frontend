@@ -4,6 +4,8 @@ import "../styles/pages/LoginPage.css";
 import { useContext, useState } from "react";
 import NavBar from "../components/NavBar";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 // useContext
 import { UserContext } from "../contexts/UserContext";
 
@@ -18,7 +20,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/login", {
+      const response = await fetch(`${BACKEND_URL}/user/login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },

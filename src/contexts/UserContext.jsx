@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
@@ -12,7 +14,7 @@ export function UserContextProvider({ children }) {
   useEffect(() => {
     const fetchData = async () => {
       if (!userAuth) {
-        const response = await fetch("http://localhost:4000/profile", {
+        const response = await fetch(`${BACKEND_URL}/user/profile`, {
           credentials: "include",
         });
 

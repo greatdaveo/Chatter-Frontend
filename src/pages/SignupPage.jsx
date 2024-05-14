@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "../components/NavBar";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const SignupPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,7 +20,7 @@ const SignupPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/register", {
+      const response = await fetch(`${BACKEND_URL}/user/register`, {
         method: "POST",
         body: JSON.stringify({
           firstName,
@@ -43,7 +45,6 @@ const SignupPage = () => {
     } catch (error) {
       setError(error.message);
     }
-    
   };
 
   return (
