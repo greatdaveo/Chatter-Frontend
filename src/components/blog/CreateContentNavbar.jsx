@@ -5,12 +5,12 @@ import { UserContext } from "../../contexts/UserContext";
 import { EditorContext } from "../../pages/Blog/BlogContentsEditor";
 import { useNavigate } from "react-router-dom";
 
-
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CreateContentNavbar = () => {
   const {
     blog,
-    blog: { title, banner },
+    blog: { title, banner, content, tags, description },
     textEditor,
     setEditorState,
     setBlog,
@@ -69,42 +69,47 @@ const CreateContentNavbar = () => {
     // To disable the publish button from being double clicked when in publishing process
     e.target.classList.add("disable");
 
-    if (textEditor.isReady) {
-      textEditor.save();
-    }
-
     try {
-      const response = await fetch("   /create-blog", {
-        method: "POST",
-        body: JSON.stringify({
-          title,
-          banner,
-          description,
-          content,
-          tags,
-          draft: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        credentials: "include",
-      });
+      if (textEditor.isReady) {
+        const content = await textEditor.save();
 
-      const data = await response.json();
+        const response = await fetch(`${BACKEND_URL}/blog/create-blog`, {
+          method: "POST",
+          body: JSON.stringify({
+            title,
+            banner,
+            description,
+            content,
+            tags,
+            draft: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          credentials: "include",
+        });
 
-      // console.log(data);
+        const data = await response.json();
 
-      setBlog(data);
-      e.target.classList.remove("disable");
-      toast.dismiss(loadingToast);
-      toast.success(
-        "Draft saved Successfully, you can always continue later. 🥳👍"
-      );
-      navigate("/");
+        console.log(data);
+
+        // setBlog(data);
+        e.target.classList.remove("disable");
+        toast.dismiss(loadingToast);
+        toast.success(
+          "Draft saved Successfully, you can always continue later. 🥳👍"
+        );
+        navigate("/");
+      } else {
+        e.target.classList.remove("disable");
+        toast.dismiss(loadingToast);
+        toast.error("Text editor is not ready yet. Please try again.");
+      }
     } catch (err) {
       e.target.classList.remove("disable");
       toast.dismiss(loadingToast);
+      console.log(err);
       return toast.error(err.error);
     }
   };
