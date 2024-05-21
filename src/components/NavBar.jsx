@@ -1,11 +1,39 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import "../styles/pages/NavBar.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
   const { userAuth } = useContext(UserContext);
   // console.log(userAuth);
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/user/logout`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      console.log(response);
+
+      if (response.ok) {
+        navigate("/login");
+        toast.success("You have logged out successfully!");
+      } else {
+        const errorData = await response.json();
+        toast.error("Logout failed:", errorData.message);
+      }
+    } catch (error) {
+      toast.error("An error occurred while logging out.");
+      console.error("Error logging out:", error);
+    }
+  };
 
   return (
     <nav>
@@ -49,7 +77,7 @@ const NavBar = () => {
             </Link>
           </div>
         ) : (
-          <Link to="/logout">
+          <Link to="/logout" onClick={handleLogout}>
             <button className="login">Log Out</button>
           </Link>
         )}

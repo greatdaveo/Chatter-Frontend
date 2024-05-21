@@ -43,7 +43,7 @@ const SignupPage = () => {
       }
 
       navigate("/login");
-      alert(data);
+      toast.success("Login successful!");
     } catch (error) {
       setError(error.message);
     }
@@ -79,7 +79,8 @@ const SignupPage = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
+      toast.success("Registration successful!");
     } catch (err) {
       toast.error(err);
       return console.log(err);

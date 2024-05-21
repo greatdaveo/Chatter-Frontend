@@ -43,6 +43,7 @@ const LoginPage = () => {
       // console.log("Token:", data.token);
 
       navigate("/create-blog");
+      toast.success("Login successful!");
     } catch (error) {
       setError("Unable to login!");
     }
@@ -75,6 +76,7 @@ const LoginPage = () => {
         throw new Error("Failed to authenticate with Google");
       } else {
         navigate("/create-blog");
+        toast.success("Login successful!");
       }
 
       const data = await response.json();

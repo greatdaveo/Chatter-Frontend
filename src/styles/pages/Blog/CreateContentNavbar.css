@@ -1,16 +1,21 @@
 .create-content-nav {
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    padding: 0rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  padding: 0rem 1rem;
+}
+
+.create-content-nav i {
+  margin-right: 1rem;
+  color: #551a8b;
 }
 
 .create-content-nav h4 {
-    color: #551a8b;
+  color: #551a8b;
 }
 
 .create-content-nav .publish {
-      color: white;
+  color: white;
   background: #551a8b;
   font-weight: 700;
 }

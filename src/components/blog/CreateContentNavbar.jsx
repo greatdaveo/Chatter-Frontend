@@ -3,7 +3,7 @@ import "../../styles/pages/Blog/CreateContentNavbar.css";
 import toast from "react-hot-toast";
 import { UserContext } from "../../contexts/UserContext";
 import { EditorContext } from "../../pages/Blog/BlogContentsEditor";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -116,7 +116,12 @@ const CreateContentNavbar = () => {
 
   return (
     <nav className="create-content-nav">
-      <h4>{title.length ? title : "New Blog 📝"} </h4>
+      <div>
+        <Link to="/">
+          <i class="fa-solid fa-backward"></i>
+        </Link>
+        <h4>{title.length ? title : "New Blog 📝"} </h4>
+      </div>
 
       <div>
         <button className="publish" onClick={handlePublish}>
