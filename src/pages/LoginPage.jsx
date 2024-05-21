@@ -8,6 +8,8 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 // useContext
 import { UserContext } from "../contexts/UserContext";
+import toast from "react-hot-toast";
+import { authWithGoogle } from "../components/firebase/firebase";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -43,6 +45,43 @@ const LoginPage = () => {
       navigate("/create-blog");
     } catch (error) {
       setError("Unable to login!");
+    }
+  };
+
+  // FOR GOOGLE AUTH
+  const handleGoogleAuth = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { access_token } = await authWithGoogle();
+      console.log("Google Access Token:", access_token);
+
+      let formData = { access_token };
+
+      // console.log("FormData to send:", formData); // Log the form data
+
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/user/google-auth`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to authenticate with Google");
+      } else {
+        navigate("/create-blog");
+      }
+
+      const data = await response.json();
+      // console.log(data);
+    } catch (err) {
+      toast.error(err);
+      return console.log(err);
     }
   };
 
@@ -82,6 +121,15 @@ const LoginPage = () => {
                 Login
               </button>
             </Link>
+
+            <Link>
+              <button onClick={handleGoogleAuth}>
+                <i class="fa-brands fa-google"></i> Sign up with google
+              </button>
+            </Link>
+            <p>
+              Don't have an account? <Link to="/register">Sign up</Link>
+            </p>
           </form>
         </div>
       </div>

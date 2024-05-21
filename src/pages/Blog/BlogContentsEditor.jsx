@@ -6,6 +6,8 @@ import CreateContent from "./CreateContent";
 import { UserContext } from "../../contexts/UserContext";
 import { Navigate } from "react-router-dom";
 import PublishFormPage from "./PublishFormPage";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 
 const blogStructure = {
   title: "",
@@ -40,9 +42,7 @@ const BlogContentsEditor = () => {
         <Navigate to="/login" />
       ) : (
         <div className="blog">
-          <div className="blog-left-side">
-            <BlogSideBar />
-          </div>
+          <div className="blog-left-side">{/* <BlogSideBar /> */}</div>
 
           <div className="blog-right-side">
             {editorState == "editor" ? (
@@ -62,6 +62,8 @@ const BlogContentsEditor = () => {
               <PublishFormPage setEditorState={setEditorState} />
             )}
           </div>
+
+          {/* <Footer /> */}
         </div>
       )}
     </EditorContext.Provider>

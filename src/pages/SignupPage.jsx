@@ -3,6 +3,8 @@ import "../styles/pages/SignupPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import NavBar from "../components/NavBar";
+import { authWithGoogle } from "../components/firebase/firebase";
+import toast from "react-hot-toast";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -44,6 +46,43 @@ const SignupPage = () => {
       alert(data);
     } catch (error) {
       setError(error.message);
+    }
+  };
+
+  // FOR GOOGLE AUTH
+  const handleGoogleAuth = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { access_token } = await authWithGoogle();
+      console.log("Google Access Token:", access_token);
+
+      let formData = { access_token };
+
+      // console.log("FormData to send:", formData); // Log the form data
+
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/user/google-auth`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to authenticate with Google");
+      } else {
+        navigate("/login");
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      toast.error(err);
+      return console.log(err);
     }
   };
 
@@ -138,11 +177,18 @@ const SignupPage = () => {
                   </button>
                 </Link>
                 <Link>
-                  <button>Sign up with google</button>
+                  {/* GOOGLE AUTH BUTTON */}
+                  <button onClick={handleGoogleAuth}>
+                    <i class="fa-brands fa-google"></i> Sign up with google
+                  </button>
                 </Link>
                 <Link>
                   <button>Sign up with Linkedin</button>
                 </Link>
+
+                <p>
+                  Have an account? <Link to="/login">Sign in</Link>
+                </p>
               </div>
             </div>
           </form>

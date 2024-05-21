@@ -38,11 +38,7 @@ const NavBar = () => {
           </ul>
         </div>
 
-        {userAuth ? (
-          <Link to="/logout">
-            <button className="login">Log Out</button>
-          </Link>
-        ) : (
+        {userAuth === null ? (
           <div>
             <Link to="/login">
               <button className="login">Log In</button>
@@ -52,6 +48,10 @@ const NavBar = () => {
               <button className="signup">Sign Up</button>
             </Link>
           </div>
+        ) : (
+          <Link to="/logout">
+            <button className="login">Log Out</button>
+          </Link>
         )}
       </div>
     </nav>
