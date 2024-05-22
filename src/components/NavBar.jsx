@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 import toast from "react-hot-toast";
 
 const NavBar = () => {
-  const { userAuth } = useContext(UserContext);
+  const { userAuth, accessToken, setAccessToken } = useContext(UserContext);
   // console.log(userAuth);
 
   const navigate = useNavigate();
@@ -20,9 +20,10 @@ const NavBar = () => {
         }
       );
 
-      console.log(response);
+      // console.log(response);
 
       if (response.ok) {
+        setAccessToken(""); // Empty the accessToken
         navigate("/login");
         toast.success("You have logged out successfully!");
       } else {
@@ -38,16 +39,23 @@ const NavBar = () => {
   return (
     <nav>
       <div>
-        <div>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <Link to="/">
-            <h1>Chatter</h1>
+            <h1>
+              <i class="fa-solid fa-feather"></i>
+              Chatter
+            </h1>
           </Link>
         </div>
 
         <div>
           <ul>
-            <li>
+            {/* <li>
               <NavLink to="/">Home</NavLink>
+            </li> */}
+
+            <li>
+              <NavLink to="/content">Content</NavLink>
             </li>
 
             <li>
@@ -55,18 +63,14 @@ const NavBar = () => {
             </li>
 
             <li>
-              <NavLink to="/contact-us">Contact</NavLink>
-            </li>
-
-            <li>
               <NavLink to={userAuth._id ? "/create-blog" : "/login"}>
-                Blog
+                Write <i class="fa-regular fa-pen-to-square"></i>
               </NavLink>
             </li>
           </ul>
         </div>
 
-        {userAuth === null ? (
+        {!accessToken && (
           <div>
             <Link to="/login">
               <button className="login">Log In</button>
@@ -76,7 +80,9 @@ const NavBar = () => {
               <button className="signup">Sign Up</button>
             </Link>
           </div>
-        ) : (
+        )}
+
+        {accessToken && (
           <Link to="/logout" onClick={handleLogout}>
             <button className="login">Log Out</button>
           </Link>

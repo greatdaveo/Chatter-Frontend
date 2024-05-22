@@ -1,0 +1,20 @@
+.in-page-nav {
+  padding: 2rem 5rem;
+  position: relative;
+}
+
+.in-page-nav button {
+  background: none;
+}
+
+.in-page-nav .active-btn {
+  /* color: var(--primary-color); */
+  /* color: var(--primary-text-color); */
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.in-page-nav hr {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+}

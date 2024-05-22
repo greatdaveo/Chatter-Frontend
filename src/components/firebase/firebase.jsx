@@ -24,7 +24,7 @@ export const authWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     const token = await user.getIdToken(); //To retrieve the ID token
-    console.log("Firebase Google Auth Token:", token); // Log the token
+    // console.log("Firebase Google Auth Token:", token); // Log the token
     return { access_token: token }; // To return an object containing the token
   } catch (err) {
     console.log(err);

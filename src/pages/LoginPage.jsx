@@ -55,9 +55,12 @@ const LoginPage = () => {
 
     try {
       const { access_token } = await authWithGoogle();
-      console.log("Google Access Token:", access_token);
+      // console.log("Google Access Token:", access_token);
 
       let formData = { access_token };
+
+      //Set the access token in the userContext
+      setAccessToken(access_token);
 
       // console.log("FormData to send:", formData); // Log the form data
 
@@ -80,7 +83,7 @@ const LoginPage = () => {
       }
 
       const data = await response.json();
-      // console.log(data);
+      // console.log("Data Token:", data);
     } catch (err) {
       toast.error(err);
       return console.log(err);
