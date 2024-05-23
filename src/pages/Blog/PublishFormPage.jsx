@@ -90,7 +90,7 @@ const PublishFormPage = () => {
       );
     }
 
-    let loadingToast = toast.loading("Publishing...");
+    const loadingToast = toast.loading("Publishing...");
     // To disable the publish button from being double clicked when in publishing process
     e.target.classList.add("disable");
 
@@ -119,8 +119,8 @@ const PublishFormPage = () => {
       setBlog(data);
       e.target.classList.remove("disable");
       toast.dismiss(loadingToast);
-      toast.success("Published Successfully! 🥳👍");
       navigate("/");
+      return toast.success("Published Successfully! 🥳👍");
     } catch (err) {
       e.target.classList.remove("disable");
       toast.dismiss(loadingToast);

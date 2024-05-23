@@ -1,0 +1,41 @@
+.blog-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  margin: 0 auto;
+  color: rgb(56, 52, 52);
+  border-bottom: 1px solid rgb(210, 197, 197);
+  margin-bottom: 1rem;
+  padding: 0.5rem 0rem;
+  margin-left: 0;
+  cursor: pointer;
+  gap: 5rem;
+}
+
+.author {
+  display: flex;
+  gap: 1rem;
+}
+
+.blog-link .title {
+  width: fit-content;
+  word-wrap: break-word;
+}
+
+.blog-link .description {
+  width: fit-content;
+  word-wrap: break-word;
+}
+
+.blog-link .tags {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blog-link .tags span:first-child {
+  background: rgb(236, 228, 228);
+  padding: 0.3rem;
+  border-radius: 10px;
+}
