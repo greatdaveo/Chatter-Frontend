@@ -7,7 +7,7 @@ const TrendingBlogPosts = ({ blog, index }) => {
   return (
     <Link to={`/blog/${blog.blog_id}`} className="trending-link">
       <div className="trend-index">
-        <h1 className="index">{index < 10 ? "0" + (index + 1) : index}</h1>
+        <h3 className="index">{index < 10 ? "0" + (index + 1) : index}</h3>
 
         <div>
           <p className="author">
@@ -18,7 +18,7 @@ const TrendingBlogPosts = ({ blog, index }) => {
           </p>
 
           <div>
-            <h1 className="title">{blog.title}</h1>
+            <h3 className="title">{blog.title}</h3>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80vw;
+  width: 60vw;
   margin: 0 auto;
   color: rgb(56, 52, 52);
   border-bottom: 1px solid rgb(210, 197, 197);
@@ -38,4 +38,26 @@
 .blog-link .description {
   width: fit-content;
   word-wrap: break-word;
+}
+
+@media (min-width: 800px) {
+  .trending-link {
+    width: 20vw;
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .blog-link .title {
+    width: fit-content;
+    word-wrap: break-word;
+  }
+
+  .blog-link .description {
+    width: fit-content;
+    word-wrap: break-word;
+  }
 }

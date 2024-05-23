@@ -1,0 +1,43 @@
+.contents-cover {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-evenly;
+}
+
+.mobile-trendingBlogs {
+  /* display: none; */
+}
+
+.contents-cover .filter-cover {
+  border-left: 1px solid rgb(210, 197, 197);
+  padding: 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contents-cover .filter-cover .tags-categories {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25vw;
+}
+
+.tags-categories .active-tag {
+  background: rgb(56, 52, 52);
+  color: white;
+}
+
+.contents-cover .filter-cover .tags-categories button {
+  border-radius: 50px;
+}
+
+@media (min-width: 950px) {
+  /* .mobile-trendingBlogs {
+    display: block;
+  } */
+}
+
+@media (max-width: 949px) {
+  .contents-cover .filter-cover {
+    display: none;
+  }
+}
