@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import "../../styles/components/Contents/InPageNavigation.css";
 
-const InPageNavigation = ({ routes, defaultHidden = [], children }) => {
+const InPageNavigation = ({
+  routes,
+  defaultHidden = [],
+  setPageState,
+  children,
+}) => {
   // To make the first button active by default
   const [inPageNavIndex, setInPageNavIndex] = useState(0);
 
   const changePageState = (btn, i) => {
     // console.log(btn, i);
     setInPageNavIndex(i);
+
+    // To return to the default latest blogs state when the 0 index button is clicked
+    if (inPageNavIndex === 0) {
+      setPageState("Latest Blogs");
+    }
   };
 
   return (

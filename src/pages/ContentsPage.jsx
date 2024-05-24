@@ -5,6 +5,7 @@ import BlogPost from "../components/blog/BlogPost";
 import TrendingBlogPosts from "../components/blog/TrendingBlogPosts";
 import "../styles/pages/Blog/ContentsPage.css";
 import Loader from "../components/loader/Loader";
+import NoDataMessage from "../components/NotFound/NoDataMessage";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -16,14 +17,31 @@ const ContentsPage = () => {
   // For Filtering
   let tagsCategories = [
     "programming",
-    "drive",
+    "driving",
     "tech",
     "mobile apps",
-    "finances",
-    "money",
+    "mindfulness",
+    "international students",
     "travel",
-    "business",
+    "barter",
   ];
+
+  // TO FETCH BY TAGS CATEGORY
+  const fetchByTagCategory = async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/blog/search-blogs`, {
+        method: "POST",
+        body: JSON.stringify({ tag: pageState }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+      const data = await response.json();
+      // console.log(data);
+      setBlogs(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // To get the latest blog from the database
   useEffect(() => {
@@ -45,6 +63,9 @@ const ContentsPage = () => {
     // Only fetch the latest blogs when the Latest Blogs is equal to "Latest Blogs"
     if (pageState == "Latest Blogs") {
       fetchLatestBlog();
+    } else {
+      // To update the page state with the tag selected
+      fetchByTagCategory();
     }
   }, [pageState]);
 
@@ -94,29 +115,36 @@ const ContentsPage = () => {
           <InPageNavigation
             routes={[pageState, "Trending blogs"]}
             defaultHidden={["Trending blogs"]}
+            setPageState={setPageState}
           >
             <div>
               {blogs == null ? (
                 <div>
                   <Loader />
                 </div>
-              ) : (
+              ) : blogs.length ? (
                 blogs?.map((blog, i) => {
                   return <BlogPost blog={blog} key={i} />;
                 })
+              ) : (
+                <NoDataMessage
+                  message={`No published blog with the tag name: ${pageState}`}
+                />
               )}
             </div>
 
-            {/* This is for the trending blogs in mobile view */}
+            {/* This is for the trending blogs in Desktop view */}
             <div className="mobile-trendingBlogs">
               {trendingBlogs == null ? (
                 <h1>No blog found!</h1>
-              ) : (
+              ) : trendingBlogs.length ? (
                 blogs?.map((blog, index) => {
                   return (
                     <TrendingBlogPosts blog={blog} key={index} index={index} />
                   );
                 })
+              ) : (
+                <NoDataMessage message={"No published blog found!"} />
               )}
             </div>
           </InPageNavigation>
@@ -140,19 +168,24 @@ const ContentsPage = () => {
             })}
           </div>
 
+          {/* This is for the Mobile screen */}
           <div>
             <h3>
               Trending <i class="fa-solid fa-arrow-trend-up"></i>
             </h3>
 
             {trendingBlogs == null ? (
-              <h1>No blog found!</h1>
-            ) : (
+              <div>
+                <Loader />
+              </div>
+            ) : trendingBlogs.length ? (
               blogs?.map((blog, index) => {
                 return (
                   <TrendingBlogPosts blog={blog} key={index} index={index} />
                 );
               })
+            ) : (
+              <NoDataMessage message={"No published blog found!"} />
             )}
           </div>
         </div>
