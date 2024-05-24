@@ -1,6 +1,11 @@
 .in-page-nav {
-  padding: 2rem 5rem;
-  position: relative;
+  padding: 2rem 4rem;
+  /* position: relative; */
+}
+
+/* This is to hide the trending blogs on big screens */
+.in-page-nav .default-hidden {
+  display: none;
 }
 
 .in-page-nav button {
@@ -8,13 +13,25 @@
 }
 
 .in-page-nav .active-btn {
-  /* color: var(--primary-color); */ 
+  /* color: var(--primary-color); */
   /* color: var(--primary-text-color); */
   border-bottom: 2px solid var(--primary-color);
 }
 
 .in-page-nav hr {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   margin: 0 auto;
+}
+
+@media (max-width: 950px) {
+  .in-page-nav {
+    padding: 2rem 3rem;
+
+    /* position: relative; */
+  }
+  /* This is to show the trending blogs on big screens */
+  .in-page-nav .default-hidden {
+    display: block;
+  }
 }

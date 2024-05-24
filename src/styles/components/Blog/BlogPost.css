@@ -39,3 +39,39 @@
   padding: 0.3rem;
   border-radius: 10px;
 }
+
+@media (max-width: 930px) {
+  .blog-link {
+    width: 80vw;
+    margin-bottom: 0rem;
+    padding: 0.5rem 0rem;
+    gap: 2rem;
+  }
+
+  .author {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .blog-link .title {
+    width: fit-content;
+    word-wrap: break-word;
+    font-size: medium;
+  }
+
+  .blog-link .description {
+    width: fit-content;
+    word-wrap: break-word;
+  }
+
+  .blog-link .tags {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .blog-link .tags span:first-child {
+    padding: 0.3rem;
+    border-radius: 10px;
+  }
+}

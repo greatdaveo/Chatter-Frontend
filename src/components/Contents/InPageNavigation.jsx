@@ -16,7 +16,13 @@ const InPageNavigation = ({ routes, defaultHidden = [], children }) => {
         return (
           <button
             key={i}
-            className={inPageNavIndex == i ? "active-btn" : ""}
+            className={
+              inPageNavIndex == i
+                ? "active-btn"
+                : "" + defaultHidden.includes(route)
+                ? "default-hidden"
+                : "both-btns"
+            }
             onClick={(e) => changePageState(e.target, i)}
           >
             {route}

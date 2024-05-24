@@ -11,17 +11,20 @@
   margin-left: 0;
   cursor: pointer;
   gap: 5rem;
+  margin-top: -2rem;
 }
 
 .trend-index {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .trend-index .index {
   color: rgb(210, 197, 197);
-  font-size: 3rem;
+  font-size: 2rem;
+  padding: 0;
+  margin-top: 0;
 }
 
 .author {
@@ -30,34 +33,57 @@
   gap: 1rem;
 }
 
-.blog-link .title {
+.trending-link .title {
   width: fit-content;
   word-wrap: break-word;
 }
 
-.blog-link .description {
+.trending-link .description {
   width: fit-content;
   word-wrap: break-word;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 950px) {
   .trending-link {
     width: 20vw;
+    margin-right: 10rem;
   }
 
   .author {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    font-size: 0.8rem;
   }
 
-  .blog-link .title {
+  .trending-link .title {
+    width: fit-content;
+    word-wrap: break-word;
+    font-size: medium;
+    margin-top: -0.8rem;
+  }
+
+  .trending-link .description {
     width: fit-content;
     word-wrap: break-word;
   }
+}
 
-  .blog-link .description {
-    width: fit-content;
-    word-wrap: break-word;
+@media (max-width: 949px) {
+  .trending-link {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 530px) {
+  .author {
+    gap: 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .trending-link .title {
+    font-size: small;
   }
 }

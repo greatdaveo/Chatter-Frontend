@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import BlogPost from "../components/blog/BlogPost";
 import TrendingBlogPosts from "../components/blog/TrendingBlogPosts";
 import "../styles/pages/Blog/ContentsPage.css";
+import Loader from "../components/loader/Loader";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ContentsPage = () => {
   const [blogs, setBlogs] = useState(null);
   const [trendingBlogs, setTrendingBlogs] = useState(null);
-  const [pageState, setPageState] = useState("home");
+  const [pageState, setPageState] = useState("Latest Blogs");
 
   // For Filtering
   let tagsCategories = [
@@ -40,8 +41,12 @@ const ContentsPage = () => {
         console.log(err);
       }
     };
-    fetchLatestBlog();
-  }, []);
+
+    // Only fetch the latest blogs when the Latest Blogs is equal to "Latest Blogs"
+    if (pageState == "Latest Blogs") {
+      fetchLatestBlog();
+    }
+  }, [pageState]);
 
   // To get the trending blog from the database
   useEffect(() => {
@@ -59,17 +64,23 @@ const ContentsPage = () => {
         console.log(err);
       }
     };
-    fetchTrendingBlogs();
+
+    // When a tag is selected, and it doesn't exist in the trending blogs fetch all the trending blogs
+    if (!trendingBlogs) {
+      fetchTrendingBlogs();
+    }
   }, []);
 
+  // This is to show the trending blogs based on the tag selected
   const loadByTagCategory = (e) => {
     let category = e.target.innerText.toLowerCase();
     setBlogs(null);
 
     if (pageState == category) {
-      setPageState("home");
+      setPageState("Latest Blogs");
       return;
     }
+    // Show page state base on the tag
     setPageState(category);
   };
 
@@ -86,7 +97,9 @@ const ContentsPage = () => {
           >
             <div>
               {blogs == null ? (
-                <h1>No blog found!</h1>
+                <div>
+                  <Loader />
+                </div>
               ) : (
                 blogs?.map((blog, i) => {
                   return <BlogPost blog={blog} key={i} />;
@@ -94,6 +107,7 @@ const ContentsPage = () => {
               )}
             </div>
 
+            {/* This is for the trending blogs in mobile view */}
             <div className="mobile-trendingBlogs">
               {trendingBlogs == null ? (
                 <h1>No blog found!</h1>
