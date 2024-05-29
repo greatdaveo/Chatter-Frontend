@@ -36,16 +36,30 @@ const NavBar = () => {
     }
   };
 
+  // To handle Search
+  const handleSearch = (e) => {
+    let query = e.target.value;
+
+    if (e.keyCode == 13 && query.length) {
+      navigate(`/search/${query}`);
+    }
+  };
+
   return (
     <nav>
       <div>
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <Link to="/">
             <h1>
-              <i class="fa-solid fa-feather"></i>
-              Chatter
+              {/* <i class="fa-solid fa-feather"></i> */}
+              <i class="fa-solid fa-book"></i> Chatter
             </h1>
           </Link>
+
+          <div className="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search" onKeyDown={handleSearch} />
+          </div>
         </div>
 
         <div>

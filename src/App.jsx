@@ -10,6 +10,7 @@ import SignupPage from "./pages/SignupPage";
 
 // Context Provider
 import { UserContextProvider } from "./contexts/UserContext";
+import SearchPage from "./pages/search/SearchPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/create-blog" element={<BlogContentsEditor />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<SignupPage />} />
+            <Route path="/search/:query" element={<SearchPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
